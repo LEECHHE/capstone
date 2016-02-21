@@ -80,7 +80,7 @@ def f(i, pi, attribute_values, df):
         product = product + numerator - denominator + inner_product
     return product
 
-Pred = [[1,2,3,4],[0,2,3,4],[0,1,3,4],[0,1,2,4],[]]
+# Pred = [[],[],[1],[1],[0,1,2]]
 def k2(D, node_order, u=2):
     n = D.shape[1]
     assert len(node_order) == n, ("Node order is not correct length."
@@ -94,7 +94,7 @@ def k2(D, node_order, u=2):
     for i in xrange(n):
         OKToProceed = False
         pi = []
-        pred = Pred[i]
+        pred = node_order[0:i]
         P_old = f(node_order[i], pi, attribute_values, df)
         if len(pred) > 0:
             OKToProceed = True
@@ -121,11 +121,18 @@ def k2(D, node_order, u=2):
     #print parents
 
     return parents
+origin = {'True':1, 'False':0, 'Abnormal':0, 'Normal':1}
+def toNumber(line):
+    if not line : return;
+    ret = line.split(',')[1:]
+    for i in range(len(ret)):
+        ret[i] = origin[ret[i]]
+    return ret
 
 def parse(args):
         path = args.D
         delimiter = ','
-        ans = {"Iris-setosa":0,"Iris-versicolor":1,"Iris-virginica":2}
+        # ans = {"Iris-setosa":0,"Iris-versicolor":1,"Iris-virginica":2}
         # delimiter = args.delimiter
         #try to read dataset
         try:
@@ -136,20 +143,17 @@ def parse(args):
 
         #meta-data
         #[Id,SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm,Species]
-        meta_data = f.readline().split(delimiter)[1:] #exclude 'Id'
+        meta_data = f.readline().split(delimiter) #exclude 'Id'
         D = list()
 
         #input database D
         #it is only for Iris data
         while True:
-            data = f.readline().rstrip('\n').split(delimiter)[1:]
+            data = toNumber(f.readline().rstrip('\n').rstrip('\r'))
             if not data : break;
-            for i in xrange(len(data)-1):
-                data[i] = float(data[i])
-            data[4] = ans[data[4]]
             D.append(data)
         # D=np.array(D)
-
+        # print(D)
         return np.array(D),meta_data
 
 if __name__ == "__main__":
