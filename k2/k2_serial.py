@@ -8,7 +8,7 @@ import sys
 import argparse
 import pickle
 
-
+meta_data = []
 def vals_of_attributes(D, n):
     output = []
     for i in xrange(n):
@@ -117,7 +117,8 @@ def k2(D, node_order, u=2):
             else:
                 OKToProceed = False
         parents[node_order[i]] = pi
-        print("Node "+str(i)+"'s parent - "+str(pi))
+        print("Node ["+meta_data[i]+"]'s parent - "+str([meta_data[i] for i in pi]))
+        # print("Node "+str(i)+"'s parent - "+str(pi))
     #print parents
 
     return parents
@@ -143,7 +144,7 @@ def parse(args):
 
         #meta-data
         #[Id,SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm,Species]
-        meta_data = f.readline().split(delimiter) #exclude 'Id'
+        meta_data = f.readline().rstrip('\n').rstrip('\r').split(delimiter)[1:] #exclude 'Id'
         D = list()
 
         #input database D
