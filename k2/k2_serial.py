@@ -80,7 +80,7 @@ def f(i, pi, attribute_values, df):
         product = product + numerator - denominator + inner_product
     return product
 
-
+Pred = [[1,2,3,4],[0,2,3,4],[0,1,3,4],[0,1,2,4],[]]
 def k2(D, node_order, u=2):
     n = D.shape[1]
     assert len(node_order) == n, ("Node order is not correct length."
@@ -94,7 +94,7 @@ def k2(D, node_order, u=2):
     for i in xrange(n):
         OKToProceed = False
         pi = []
-        pred = node_order[0:i]
+        pred = Pred[i]
         P_old = f(node_order[i], pi, attribute_values, df)
         if len(pred) > 0:
             OKToProceed = True
