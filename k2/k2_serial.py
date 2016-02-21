@@ -80,7 +80,7 @@ def f(i, pi, attribute_values, df):
         product = product + numerator - denominator + inner_product
     return product
 
-Pred = [[],[],[1],[1],[0,1,2]]
+# Pred = [[],[],[1],[1],[0,1,2]]
 def k2(D, node_order, u=2):
     n = D.shape[1]
     assert len(node_order) == n, ("Node order is not correct length."
@@ -94,7 +94,7 @@ def k2(D, node_order, u=2):
     for i in xrange(n):
         OKToProceed = False
         pi = []
-        pred = Pred[i]
+        pred = node_order[0:i]
         P_old = f(node_order[i], pi, attribute_values, df)
         if len(pred) > 0:
             OKToProceed = True
@@ -121,14 +121,12 @@ def k2(D, node_order, u=2):
     #print parents
 
     return parents
-origin = [{'Slim':0, 'Average':1, 'Large':2},{'Male':0,'Female':1},{'Short':0,'Medium':1,'Long':2}]
+origin = {'True':1, 'False':0, 'Abnormal':0, 'Normal':1}
 def toNumber(line):
     if not line : return;
-    ret = line.split(',')
-    for i in range(3):
-        ret[i] = origin[i][ret[i]]
-    for i in range(3,5):
-        ret[i] = float(ret[i])
+    ret = line.split(',')[1:]
+    for i in range(len(ret)):
+        ret[i] = origin[ret[i]]
     return ret
 
 def parse(args):
@@ -155,7 +153,7 @@ def parse(args):
             if not data : break;
             D.append(data)
         # D=np.array(D)
-        print(D)
+        # print(D)
         return np.array(D),meta_data
 
 if __name__ == "__main__":
