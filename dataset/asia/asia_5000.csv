@@ -1,4 +1,4 @@
-Visit to Asia,Smoker,Has Bronchitis,Has Lung Cancer,Has Tuberculosis,Tuberculosis or Cancer,XRay Result,Dyspnea
+VisitAsia,Smoking,Bronchitis,Cancer,Tuberculosis,TbOrCa,XRay,Dyspnea
 FALSE,TRUE,FALSE,TRUE,FALSE,TRUE,Abnormal,FALSE
 FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,Normal,TRUE
 FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Normal,FALSE
