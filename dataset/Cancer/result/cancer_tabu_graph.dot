@@ -1,0 +1,8 @@
+digraph Cancer {
+SerumCalcium->MetastaticCancer
+BrainTumor->MetastaticCancer
+Coma->SerumCalcium
+BrainTumor->SerumCalcium
+BrainTumor->Coma
+BrainTumor->SevereHeadaches
+}

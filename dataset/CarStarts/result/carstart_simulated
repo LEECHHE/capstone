@@ -1,0 +1,84 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.BayesNet -D -Q weka.classifiers.bayes.net.search.local.SimulatedAnnealing -- -A 10.0 -U 10000 -D 0.8 -R 123 -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.5
+Relation:     CarStarts
+Instances:    15000
+Attributes:   18
+              Alternator
+              FanBelt
+              Leak
+              Charge
+              BatteryAge
+              BatteryState
+              BatteryPower
+              GasInTank
+              GasGauge
+              Lights
+              Radio
+              Starter
+              Leak2
+              EngineCranks
+              FuelPump
+              Distributor
+              SparkPlugs
+              Starts
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Bayes Network Classifier
+not using ADTree
+#attributes=18 #classindex=0
+Network structure (nodes followed by parents)
+Alternator(2): 
+FanBelt(3): Charge Alternator Leak 
+Leak(2): 
+Charge(2): SparkPlugs EngineCranks Leak Alternator 
+BatteryAge(2): Leak2 BatteryState SparkPlugs Alternator 
+BatteryState(2): Charge SparkPlugs BatteryPower 
+BatteryPower(2): EngineCranks Charge Alternator 
+GasInTank(2): GasGauge BatteryPower 
+GasGauge(2): SparkPlugs BatteryPower Alternator 
+Lights(2): BatteryPower SparkPlugs 
+Radio(2): BatteryPower Alternator SparkPlugs 
+Starter(2): Leak2 EngineCranks BatteryPower 
+Leak2(2): EngineCranks SparkPlugs BatteryState Alternator 
+EngineCranks(2): Leak Alternator 
+FuelPump(2): SparkPlugs Alternator 
+Distributor(2): EngineCranks FuelPump Starts 
+SparkPlugs(2): Alternator 
+Starts(2): EngineCranks FuelPump 
+LogScore Bayes: -34739.694597919515
+LogScore BDeu: -35074.136614035335
+LogScore MDL: -35408.712558578045
+LogScore ENTROPY: -34754.837785932315
+LogScore AIC: -34890.837785932315
+
+
+Time taken to build model: 9.03 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       15000              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+Mean absolute error                      0     
+Root mean squared error                  0.0004
+Relative absolute error                 15.5522 %
+Root relative squared error            566.1421 %
+Total Number of Instances            15000     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 1         0          1         1         1          ?        Ok
+                 0         0          0         0         0          ?        Faulted
+Weighted Avg.    1         0          1         1         1          0    
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+ 15000     0 |     a = Ok
+     0     0 |     b = Faulted
+

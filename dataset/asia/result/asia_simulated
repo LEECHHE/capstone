@@ -1,0 +1,64 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.BayesNet -D -Q weka.classifiers.bayes.net.search.local.SimulatedAnnealing -- -A 10.0 -U 10000 -D 0.8 -R 123 -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.5
+Relation:     Asia
+Instances:    15000
+Attributes:   8
+              VisitAsia
+              Tuberculosis
+              Smoking
+              Cancer
+              TbOrCa
+              XRay
+              Bronchitis
+              Dyspnea
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Bayes Network Classifier
+not using ADTree
+#attributes=8 #classindex=0
+Network structure (nodes followed by parents)
+VisitAsia(2): 
+Tuberculosis(2): Cancer TbOrCa 
+Smoking(2): Cancer 
+Cancer(2): 
+TbOrCa(2): Cancer VisitAsia 
+XRay(2): TbOrCa 
+Bronchitis(2): Smoking 
+Dyspnea(2): TbOrCa Bronchitis 
+LogScore Bayes: -34120.56066276661
+LogScore BDeu: -34144.98737574507
+LogScore MDL: -34173.454124442345
+LogScore ENTROPY: -34077.2960696415
+LogScore AIC: -34097.2960696415
+
+
+Time taken to build model: 5.23 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       14826               98.84   %
+Incorrectly Classified Instances       174                1.16   %
+Kappa statistic                          0     
+Mean absolute error                      0.0229
+Root mean squared error                  0.107 
+Relative absolute error                 99.7509 %
+Root relative squared error             99.9583 %
+Total Number of Instances            15000     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          0.494    Visit
+                 1         1          0.988     1         0.994      0.496    NoVisit
+Weighted Avg.    0.988     0.988      0.977     0.988     0.983      0.495
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+     0   174 |     a = Visit
+     0 14826 |     b = NoVisit
+

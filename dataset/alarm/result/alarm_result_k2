@@ -1,0 +1,124 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.BayesNet -D -Q weka.classifiers.bayes.net.search.local.K2 -- -P 4 -N -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.5
+Relation:     alarm_15000
+Instances:    15000
+Attributes:   37
+              Hypovolemia
+              LVFailure
+              History
+              LVEDVolume
+              StrokeVolume
+              CVP
+              PCWP
+              CO
+              InsuffAnesth
+              Catechol
+              PAP
+              PulmEmbolus
+              Shunt
+              HR
+              ErrLowOutput
+              Anaphylaxis
+              TPR
+              ErrCauter
+              BP
+              HRBP
+              HREKG
+              HRSat
+              SaO2
+              PVSat
+              FiO2
+              ArtCO2
+              Intubation
+              VentAlv
+              MinVol
+              VentLung
+              ExpCO2
+              KinkedTube
+              Press
+              VentTube
+              VentMach
+              Disconnect
+              MinVolSet
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Bayes Network Classifier
+not using ADTree
+#attributes=37 #classindex=36
+Network structure (nodes followed by parents)
+Hypovolemia(2): 
+LVFailure(2): 
+History(2): LVFailure 
+LVEDVolume(3): Hypovolemia LVFailure 
+StrokeVolume(3): Hypovolemia LVFailure 
+CVP(3): LVEDVolume 
+PCWP(3): LVEDVolume 
+CO(3): StrokeVolume 
+InsuffAnesth(2): CO StrokeVolume 
+Catechol(2): CO InsuffAnesth StrokeVolume MinVolSet 
+PAP(3): 
+PulmEmbolus(2): PAP Catechol 
+Shunt(2): Catechol PulmEmbolus InsuffAnesth 
+HR(3): Catechol CO StrokeVolume 
+ErrLowOutput(2): 
+Anaphylaxis(2): Catechol 
+TPR(3): Catechol InsuffAnesth Shunt Anaphylaxis 
+ErrCauter(2): 
+BP(3): TPR CO 
+HRBP(3): HR ErrLowOutput 
+HREKG(3): HR ErrCauter 
+HRSat(3): HR ErrCauter 
+SaO2(3): Catechol Shunt TPR InsuffAnesth 
+PVSat(3): SaO2 Shunt MinVolSet PulmEmbolus 
+FiO2(2): PVSat Shunt 
+ArtCO2(3): PVSat FiO2 Catechol MinVolSet 
+Intubation(3): Shunt PVSat ArtCO2 PulmEmbolus 
+VentAlv(4): PVSat ArtCO2 Intubation MinVolSet 
+MinVol(4): VentAlv Intubation MinVolSet 
+VentLung(4): MinVol VentAlv Intubation 
+ExpCO2(4): ArtCO2 VentLung 
+KinkedTube(2): VentLung MinVolSet Intubation 
+Press(4): VentLung Intubation KinkedTube MinVolSet 
+VentTube(4): Press VentLung Intubation KinkedTube 
+VentMach(4): VentTube MinVolSet 
+Disconnect(2): VentTube VentMach 
+MinVolSet(3): 
+LogScore Bayes: -142074.05872832017
+LogScore BDeu: -149720.86385247577
+LogScore MDL: -150171.84780158903
+LogScore ENTROPY: -142296.5031134002
+LogScore AIC: -143934.5031134002
+
+
+Time taken to build model: 3.34 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       14678               97.8533 %
+Incorrectly Classified Instances       322                2.1467 %
+Kappa statistic                          0.0639
+Mean absolute error                      0.0161
+Root mean squared error                  0.1058
+Relative absolute error                 58.4947 %
+Root relative squared error             90.4097 %
+Total Number of Instances            15000     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.999     0.962      0.98      0.999     0.989      0.977    Normal
+                 0.02      0.001      0.25      0.02      0.037      0.985    High
+                 0.049     0.001      0.4       0.049     0.088      0.982    Low
+Weighted Avg.    0.979     0.942      0.966     0.979     0.97       0.977
+
+=== Confusion Matrix ===
+
+     a     b     c   <-- classified as
+ 14667     8    12 |     a = Normal
+   148     3     0 |     b = High
+   153     1     8 |     c = Low
+

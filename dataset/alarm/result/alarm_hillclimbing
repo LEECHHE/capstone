@@ -1,0 +1,124 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.BayesNet -D -Q weka.classifiers.bayes.net.search.local.HillClimber -- -N -P 4 -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.5
+Relation:     alarm_15000
+Instances:    15000
+Attributes:   37
+              Hypovolemia
+              LVFailure
+              History
+              LVEDVolume
+              StrokeVolume
+              CVP
+              PCWP
+              CO
+              InsuffAnesth
+              Catechol
+              PAP
+              PulmEmbolus
+              Shunt
+              HR
+              ErrLowOutput
+              Anaphylaxis
+              TPR
+              ErrCauter
+              BP
+              HRBP
+              HREKG
+              HRSat
+              SaO2
+              PVSat
+              FiO2
+              ArtCO2
+              Intubation
+              VentAlv
+              MinVol
+              VentLung
+              ExpCO2
+              KinkedTube
+              Press
+              VentTube
+              VentMach
+              Disconnect
+              MinVolSet
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Bayes Network Classifier
+not using ADTree
+#attributes=37 #classindex=36
+Network structure (nodes followed by parents)
+Hypovolemia(2): LVEDVolume 
+LVFailure(2): LVEDVolume Hypovolemia 
+History(2): LVFailure 
+LVEDVolume(3): CVP 
+StrokeVolume(3): Hypovolemia LVFailure 
+CVP(3): 
+PCWP(3): LVEDVolume 
+CO(3): HR StrokeVolume 
+InsuffAnesth(2): Catechol SaO2 TPR ArtCO2 
+Catechol(2): HR 
+PAP(3): PulmEmbolus 
+PulmEmbolus(2): Catechol 
+Shunt(2): Intubation Catechol PulmEmbolus TPR 
+HR(3): 
+ErrLowOutput(2): 
+Anaphylaxis(2): TPR 
+TPR(3): BP CO Catechol 
+ErrCauter(2): FiO2 
+BP(3): CO Catechol 
+HRBP(3): HR ErrLowOutput 
+HREKG(3): HR ErrCauter 
+HRSat(3): HR ErrCauter 
+SaO2(3): PVSat Shunt Catechol 
+PVSat(3): VentAlv FiO2 Catechol TPR 
+FiO2(2): Catechol 
+ArtCO2(3): Catechol TPR PulmEmbolus 
+Intubation(3): VentAlv VentLung 
+VentAlv(4): ExpCO2 ArtCO2 Catechol 
+MinVol(4): VentLung Intubation 
+VentLung(4): VentAlv ExpCO2 
+ExpCO2(4): ArtCO2 
+KinkedTube(2): VentLung Press Intubation 
+Press(4): VentLung Intubation 
+VentTube(4): Press VentLung Intubation KinkedTube 
+VentMach(4): VentTube Disconnect 
+Disconnect(2): VentTube 
+MinVolSet(3): VentMach 
+LogScore Bayes: -141275.20550306758
+LogScore BDeu: -145421.67441653262
+LogScore MDL: -145753.6458047415
+LogScore ENTROPY: -140979.3983838796
+LogScore AIC: -141972.3983838796
+
+
+Time taken to build model: 5.31 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       14684               97.8933 %
+Incorrectly Classified Instances       316                2.1067 %
+Kappa statistic                          0.4538
+Mean absolute error                      0.0142
+Root mean squared error                  0.084 
+Relative absolute error                 51.7567 %
+Root relative squared error             71.8207 %
+Total Number of Instances            15000     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.991     0.565      0.988     0.991     0.989      0.981    Normal
+                 0.894     0.009      0.493     0.894     0.635      0.988    High
+                 0         0          0         0         0          0.983    Low
+Weighted Avg.    0.979     0.554      0.972     0.979     0.975      0.981
+
+=== Confusion Matrix ===
+
+     a     b     c   <-- classified as
+ 14549   138     0 |     a = Normal
+    16   135     0 |     b = High
+   161     1     0 |     c = Low
+

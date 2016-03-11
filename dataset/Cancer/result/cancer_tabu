@@ -1,0 +1,58 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.BayesNet -D -Q weka.classifiers.bayes.net.search.local.TabuSearch -- -L 5 -U 10 -N -P 2 -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.5
+Relation:     Cancer
+Instances:    15000
+Attributes:   5
+              MetastaticCancer
+              SerumCalcium
+              BrainTumor
+              Coma
+              SevereHeadaches
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Bayes Network Classifier
+not using ADTree
+#attributes=5 #classindex=0
+Network structure (nodes followed by parents)
+MetastaticCancer(2): SerumCalcium BrainTumor 
+SerumCalcium(2): Coma BrainTumor 
+BrainTumor(2): 
+Coma(2): BrainTumor 
+SevereHeadaches(2): BrainTumor 
+LogScore Bayes: -33461.708357806
+LogScore BDeu: -33477.99283312497
+LogScore MDL: -33482.33654164552
+LogScore ENTROPY: -33419.83380602497
+LogScore AIC: -33432.83380602497
+
+
+Time taken to build model: 0.05 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       12395               82.6333 %
+Incorrectly Classified Instances      2605               17.3667 %
+Kappa statistic                          0.2187
+Mean absolute error                      0.227 
+Root mean squared error                  0.3368
+Relative absolute error                 71.3278 %
+Root relative squared error             84.4321 %
+Total Number of Instances            15000     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.162     0.009      0.816     0.162     0.27       0.815    Present
+                 0.991     0.838      0.827     0.991     0.901      0.815    Absent
+Weighted Avg.    0.826     0.674      0.825     0.826     0.776      0.815
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+   482  2496 |     a = Present
+   109 11913 |     b = Absent
+

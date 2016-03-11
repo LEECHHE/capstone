@@ -1,0 +1,64 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.BayesNet -D -Q weka.classifiers.bayes.net.search.local.HillClimber -- -N -P 2 -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.5
+Relation:     Asia
+Instances:    15000
+Attributes:   8
+              VisitAsia
+              Tuberculosis
+              Smoking
+              Cancer
+              TbOrCa
+              XRay
+              Bronchitis
+              Dyspnea
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Bayes Network Classifier
+not using ADTree
+#attributes=8 #classindex=0
+Network structure (nodes followed by parents)
+VisitAsia(2): 
+Tuberculosis(2): VisitAsia 
+Smoking(2): Bronchitis Cancer 
+Cancer(2): 
+TbOrCa(2): Cancer Tuberculosis 
+XRay(2): TbOrCa 
+Bronchitis(2): Dyspnea TbOrCa 
+Dyspnea(2): TbOrCa 
+LogScore Bayes: -34125.13862292299
+LogScore BDeu: -34149.56533590144
+LogScore MDL: -34174.0023243971
+LogScore ENTROPY: -34077.84426959626
+LogScore AIC: -34097.84426959626
+
+
+Time taken to build model: 0.09 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       14826               98.84   %
+Incorrectly Classified Instances       174                1.16   %
+Kappa statistic                          0     
+Mean absolute error                      0.023 
+Root mean squared error                  0.107 
+Relative absolute error                 99.7807 %
+Root relative squared error             99.9506 %
+Total Number of Instances            15000     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0         0          0         0         0          0.504    Visit
+                 1         1          0.988     1         0.994      0.505    NoVisit
+Weighted Avg.    0.988     0.988      0.977     0.988     0.983      0.505
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+     0   174 |     a = Visit
+     0 14826 |     b = NoVisit
+

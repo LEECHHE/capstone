@@ -1,0 +1,84 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.BayesNet -D -Q weka.classifiers.bayes.net.search.local.HillClimber -- -N -P 4 -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.5
+Relation:     CarStarts
+Instances:    15000
+Attributes:   18
+              Alternator
+              FanBelt
+              Leak
+              Charge
+              BatteryAge
+              BatteryState
+              BatteryPower
+              GasInTank
+              GasGauge
+              Lights
+              Radio
+              Starter
+              Leak2
+              EngineCranks
+              FuelPump
+              Distributor
+              SparkPlugs
+              Starts
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Bayes Network Classifier
+not using ADTree
+#attributes=18 #classindex=0
+Network structure (nodes followed by parents)
+Alternator(2): 
+FanBelt(3): 
+Leak(2): 
+Charge(2): FanBelt Leak 
+BatteryAge(2): BatteryState Leak2 Alternator SparkPlugs 
+BatteryState(2): 
+BatteryPower(2): BatteryState Charge 
+GasInTank(2): GasGauge BatteryPower 
+GasGauge(2): BatteryPower Alternator SparkPlugs 
+Lights(2): BatteryPower 
+Radio(2): BatteryPower 
+Starter(2): 
+Leak2(2): 
+EngineCranks(2): BatteryPower Starter Leak2 
+FuelPump(2): Alternator SparkPlugs 
+Distributor(2): Alternator SparkPlugs 
+SparkPlugs(2): 
+Starts(2): EngineCranks FuelPump Distributor 
+LogScore Bayes: -34708.28388039726
+LogScore BDeu: -34854.438830812316
+LogScore MDL: -35045.6194554807
+LogScore ENTROPY: -34689.834652717574
+LogScore AIC: -34763.834652717574
+
+
+Time taken to build model: 0.57 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       15000              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+Mean absolute error                      0     
+Root mean squared error                  0.0003
+Relative absolute error                 42.3646 %
+Root relative squared error            424.6387 %
+Total Number of Instances            15000     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 1         0          1         1         1          ?        Ok
+                 0         0          0         0         0          ?        Faulted
+Weighted Avg.    1         0          1         1         1          0    
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+ 15000     0 |     a = Ok
+     0     0 |     b = Faulted
+

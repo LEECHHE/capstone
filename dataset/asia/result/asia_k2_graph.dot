@@ -1,0 +1,10 @@
+digraph Asia {
+VisitAsia->Tuberculosis
+Smoking->Cancer
+Cancer->TbOrCa
+Tuberculosis->TbOrCa
+TbOrCa->XRay
+Smoking->Bronchitis
+Bronchitis->Dyspnea
+TbOrCa->Dyspnea
+}

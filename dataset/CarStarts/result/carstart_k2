@@ -1,0 +1,86 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.BayesNet -D -Q weka.classifiers.bayes.net.search.local.K2 -- -P 4 -N -S BAYES -E weka.classifiers.bayes.net.estimate.SimpleEstimator -- -A 0.5
+Relation:     CarStarts
+Instances:    15000
+Attributes:   18
+              Alternator
+              FanBelt
+              Leak
+              Charge
+              BatteryAge
+              BatteryState
+              BatteryPower
+              GasInTank
+              GasGauge
+              Lights
+              Radio
+              Starter
+              Leak2
+              EngineCranks
+              FuelPump
+              Distributor
+              SparkPlugs
+              Starts
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Bayes Network Classifier
+not using ADTree
+#attributes=18 #classindex=1
+Network structure (nodes followed by parents)
+Alternator(2): 
+FanBelt(3): 
+Leak(2): 
+Charge(2): FanBelt Leak 
+BatteryAge(2): Leak Alternator 
+BatteryState(2): BatteryAge 
+BatteryPower(2): BatteryState Charge 
+GasInTank(2): Alternator 
+GasGauge(2): GasInTank BatteryPower 
+Lights(2): BatteryPower 
+Radio(2): BatteryPower 
+Starter(2): 
+Leak2(2): 
+EngineCranks(2): BatteryPower Starter Leak2 
+FuelPump(2): Alternator 
+Distributor(2): Alternator 
+SparkPlugs(2): 
+Starts(2): EngineCranks FuelPump Distributor 
+LogScore Bayes: -34707.90702062849
+LogScore BDeu: -34787.78644762153
+LogScore MDL: -34932.290790831445
+LogScore ENTROPY: -34677.47194560921
+LogScore AIC: -34730.47194560921
+
+
+Time taken to build model: 0.21 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       14975               99.8333 %
+Incorrectly Classified Instances        25                0.1667 %
+Kappa statistic                          0.8155
+Mean absolute error                      0.0015
+Root mean squared error                  0.0266
+Relative absolute error                 24.0337 %
+Root relative squared error             48.4094 %
+Total Number of Instances            15000     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 1         0          1         1         1          1        Ok
+                 1         0.002      0.632     1         0.775      0.999    Slipping
+                 0         0          0         0         0          0.998    Broken
+Weighted Avg.    0.998     0          0.997     0.998     0.998      1    
+
+=== Confusion Matrix ===
+
+     a     b     c   <-- classified as
+ 14932     0     0 |     a = Ok
+     0    43     0 |     b = Slipping
+     0    25     0 |     c = Broken
+

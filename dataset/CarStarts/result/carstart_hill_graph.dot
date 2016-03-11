@@ -1,0 +1,27 @@
+digraph CarStarts {
+FanBelt->Charge
+Leak->Charge
+BatteryState->BatteryAge
+Leak2->BatteryAge
+Alternator->BatteryAge
+SparkPlugs->BatteryAge
+BatteryState->BatteryPower
+Charge->BatteryPower
+GasGauge->GasInTank
+BatteryPower->GasInTank
+BatteryPower->GasGauge
+Alternator->GasGauge
+SparkPlugs->GasGauge
+BatteryPower->Lights
+BatteryPower->Radio
+BatteryPower->EngineCranks
+Starter->EngineCranks
+Leak2->EngineCranks
+Alternator->FuelPump
+SparkPlugs->FuelPump
+Alternator->Distributor
+SparkPlugs->Distributor
+EngineCranks->Starts
+FuelPump->Starts
+Distributor->Starts
+}
